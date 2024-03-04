@@ -1,0 +1,62 @@
+<odoo>
+    <record id="book_tree_view" model="ir.ui.view">
+        <field name="name">book.tree.view</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree create="1" delete="1">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="published_date"/>
+                <field name="state"/>
+                <field name="publisher_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="book_form_view" model="ir.ui.view">
+        <field name="name">book.form.view</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form create="1" delete="1" edit="1">
+                <sheet>
+                    <group>
+                        <group string="General Info.">
+                            <field name="name"/>
+                            <field name="code" required="1"/>
+                        </group>
+                        <group string="Additional Info.">
+                            <field name="publisher_id"/>
+                            <field name="published_date"/>
+                            <field name="age"/>
+                            <field name="state"/>
+                            <field name="active"/>
+                            <field name="image"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="book_search_view" model="ir.ui.view">
+        <field name="name">book.search.view</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="library_book_action" model="ir.actions.act_window">
+        <field name="name">Library Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menuitem_library_book"
+              name="Books"
+              parent="menu_root_book"
+              action="library_book_action"/>
+</odoo>
